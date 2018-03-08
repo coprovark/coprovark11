@@ -21,3 +21,42 @@ Route::get('/hello', function () {
 Route::get('/profile', function () {
     return view('profile');
 });
+
+Route::get('/page1', function () {
+    return view('page1');
+});
+
+
+#ลิ้ง page 3 หน้า จากโฟลเดอร์ layouts, page
+Route::get('/page1', function () {
+    $array = [
+        "NAME"   => "",
+        "ID"     => "",
+        "GEN"    => "",
+        "ACCENT" => ""
+    ];
+    return view('page.page1', $array);
+});
+
+Route::get('/page2', function () {
+    return view('page.page2');
+});
+
+Route::get('/page3', function () {
+    return view('page.page3');
+});
+
+Route::get('/page4', function () {
+    return view('page.page2');
+});
+
+//เชื่อม ไฟล์ PageController
+Route::post('/page','PageController@show');
+//---------------------------------
+
+Route::get('/page10/{id}', function ($id) {
+    $array = [
+        "ID" => $id
+    ];
+    return view('page.page10', $array);
+});
