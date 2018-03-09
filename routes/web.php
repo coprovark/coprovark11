@@ -26,7 +26,7 @@ Route::get('/page1', function () {
     return view('page1');
 });
 
-
+//------------------------------
 #ลิ้ง page 3 หน้า จากโฟลเดอร์ layouts, page
 Route::get('/page1', function () {
     $array = [
@@ -41,9 +41,14 @@ Route::get('/page1', function () {
 Route::get('/page2', function () {
     return view('page.page2');
 });
-
+Route::post('/page','PageController@show2');
 Route::get('/page3', function () {
-    return view('page.page3');
+    $array = [
+        "PASS"   => "",
+        "SELEC"  => "",
+        "AREA"   => ""
+    ];
+    return view('page.page3', $array);
 });
 
 Route::get('/page4', function () {
@@ -53,10 +58,17 @@ Route::get('/page4', function () {
 //เชื่อม ไฟล์ PageController
 Route::post('/page','PageController@show');
 //---------------------------------
-
 Route::get('/page10/{id}', function ($id) {
     $array = [
         "ID" => $id
     ];
     return view('page.page10', $array);
+});
+//link form.register
+Route::get('/form_register', function () {
+    return view('page.form_register');
+});
+//link form.login
+Route::get('/form_login', function () {
+    return view('page.form_login');
 });

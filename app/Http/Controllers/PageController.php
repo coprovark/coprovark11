@@ -22,9 +22,20 @@ class PageController extends Controller
             "ACCENT" => $txt_checkbox
         ];
         return view('page.page1',$array);
-
         //echo "Name : ".$txt_name.'<br>'."ID : ".$txt_hidden.'<br>'."Gender : ".$txt_radio.'<br>'."Accept : ".$txt_checkbox;
-
         //return $radio;
+    }
+    public function show2(Request $request)
+    {
+        $txt_pass = $request->input('pass');
+        $txt_selec = $request->input('selec');
+        $txt_area = $request->input('area');
+
+        $array = [
+            "PASS"  => $txt_pass,
+            "SELEC"    => $txt_selec,
+            "AREA"   => $txt_area
+        ];
+        return view('page.page3',$array);
     }
 }
