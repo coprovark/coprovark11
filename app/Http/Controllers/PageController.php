@@ -32,10 +32,19 @@ class PageController extends Controller
         $txt_area = $request->input('area');
 
         $array = [
-            "PASS"  => $txt_pass,
-            "SELEC"    => $txt_selec,
+            "PASS"   => $txt_pass,
+            "SELEC"  => $txt_selec,
             "AREA"   => $txt_area
         ];
         return view('page.page3',$array);
+    }
+
+    public function ShowLogin(Request $request)
+    {
+        $txtUser = $request->input('user');
+        $txtPassword = $request->input('password');
+
+        $data = ["USER"=>$txtUser,"PASSWORD"=>$txtPassword];
+        return view('page.form_login',$data);
     }
 }

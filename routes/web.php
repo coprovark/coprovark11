@@ -69,6 +69,8 @@ Route::get('/form_register', function () {
     return view('page.form_register');
 });
 //link form.login
+Route::post('/page','PageController@ShowLogin');
 Route::get('/form_login', function () {
-    return view('page.form_login');
+    $data = ["USER"=>"",'PASSWORD'=>""];
+    return view('page.form_login',$data);
 });
