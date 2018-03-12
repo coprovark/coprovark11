@@ -74,3 +74,28 @@ Route::get('/form_login', function () {
     $data = ["USER"=>"",'PASSWORD'=>""];
     return view('page.form_login',$data);
 });
+//------------------------------------------------------
+//เชื่อมฐานข้อมูล
+Route::get('/form_check_login', function () {
+    $data2 = ['users'=>[]];
+    return view('page.form_check_login',$data2);
+});
+Route::post('/form_check_login','PageController@form_check_login');
+//++++++++++++++++++
+Route::get('/form_login', function () {
+    $data3 = ['users'=>[]];
+    return view('page.form_login',$data3);
+});
+Route::post('/form_login','PageController@form_login');
+//+++++++++++++++++++
+Route::get('/form_login2', function () {
+    $array = [
+        "username"   => '',
+        "name"  => ''
+    ];
+    return view('page.form_login',$array);
+});
+Route::post('/form_login2','PageController@form_login2');
+//------------------------------------------------
+//หน้าสมาชิก
+Route::get('/list_users','UsersController@list_users');
