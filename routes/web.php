@@ -99,3 +99,12 @@ Route::post('/form_login2','PageController@form_login2');
 //------------------------------------------------
 //หน้าสมาชิก
 Route::get('/list_users','UsersController@list_users');
+//ลบ
+Route::get('delete_user/{id}', function ($id) {
+    return 'User ='.$id;
+});
+Route::get('/delete_user/{id}','UsersController@delete_users');
+//เพิ่ม
+Route::get('/form_register_save','UsersController@form_register_save');
+//ค้นหา
+Route::post('/list_users_find','UsersController@list_users_find');
