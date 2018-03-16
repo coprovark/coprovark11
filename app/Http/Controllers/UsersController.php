@@ -50,7 +50,63 @@ class UsersController extends Controller
            return redirect('list_users');
         }else{
            return "เกิดข้อผิดพลาด";
-        }
-       
-      }
+        }       
+    }
+//------------------------------------------------
+//นักศึกษา
+    //แสดง
+    public function std_show(){
+        $find = '';
+        $std = DB::table('coprovark_11')->select('*')->get();
+       return view('page.std_show',[
+           'std_show'=>$std,
+           'find'=>$find
+        ]);
+    }
+    //ลบ
+    public function delete_std($id){
+        //พารามิเตอร์ 3 ตัวใน where คือ ฟิล,เปรียบเทียบ,ค่าที่นำมาเปรียบ
+        DB::table('coprovark_11')->where('id', '=', $id)->delete();
+        return redirect('std_show');
+    }
+    //เพิ่ม
+    public function save_std(Request $req){
+        $status = DB::table('coprovark_11')->insert(
+          [            
+            'sid'       => $req->StdID,
+            'titleName' => $req->TitleName,
+            'fullName'  => $req->FullName,
+            'gender'    => $req->Gender,
+            'birthDay'  => $req->Birthday,
+            'facultyID' => $req->FacultyID,
+            'majorID'   => $req->MajorID,
+            'address'   => $req->Address,
+            'mobile'    => $req->Mobile,
+            'food1'     => $req->Food1,
+            'food2'     => $req->Food2,
+            'food3'     => $req->Food3,
+            'food4'     => $req->Food4,
+            'username'  => $req->Username,
+            'password'  => $req->Password
+          ]
+        );
+        if($status){
+           return redirect('std_show');
+        }else{
+           return "เกิดข้อผิดพลาด";
+        }       
+    }
+    //ค้นหา
+    public function find_std(Request $req){
+        $find = $req->find;
+        $std = DB::table('coprovark_11')
+                    ->select('*')
+                    ->where('sid','=',$find)
+                    ->get();
+       return view('page.std_show',[
+           'std_show'=>$std,
+           'find'=>$find
+        ]);
+        return $req;
+    }
 }

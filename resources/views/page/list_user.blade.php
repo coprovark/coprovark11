@@ -16,7 +16,7 @@
     </div>
 </form>
 <br>
-<table class="table table-hover">
+<table class="table table-hover" >
     <tr style="background-color:#bfbfbf;">
         <td>ID</td>
         <td>USERNAME</td>

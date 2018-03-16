@@ -99,12 +99,25 @@ Route::post('/form_login2','PageController@form_login2');
 //------------------------------------------------
 //หน้าสมาชิก
 Route::get('/list_users','UsersController@list_users');
-//ลบ
+//ตรวจสอบว่าส่ง id ไปถูกไหม
 Route::get('delete_user/{id}', function ($id) {
     return 'User ='.$id;
 });
-Route::get('/delete_user/{id}','UsersController@delete_users');
-//เพิ่ม
-Route::get('/form_register_save','UsersController@form_register_save');
-//ค้นหา
-Route::post('/list_users_find','UsersController@list_users_find');
+Route::get('/delete_user/{id}','UsersController@delete_users');//ลบ
+Route::get('/form_register_save','UsersController@form_register_save');//เพิ่ม
+Route::post('/list_users_find','UsersController@list_users_find');//ค้นหา
+//==============================================
+
+    //ข้อมูลนักศึกษา
+//หน้าบันทึกข้อมูลนักศึกษา
+Route::get('/std_form', function () {
+    return view('page.std_form');
+});
+//หน้าแสดงข้อมูลนักศึกษา
+Route::get('/std_show', function () {
+    return view('page.std_show');
+});
+Route::get('/std_show','UsersController@std_show');//แสดงผลในตาราง
+Route::get('/delete_std/{id}','UsersController@delete_std');//ลบ
+Route::get('/save_std','UsersController@save_std');//เพิ่ม
+Route::post('/find_std','UsersController@find_std');//ค้นหา

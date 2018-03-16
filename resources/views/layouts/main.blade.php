@@ -70,7 +70,7 @@
                                     <a href="morris.html">Morris.js Charts</a>
                                 </li>
                             </ul>
-                            <!-- /.nav-second-level -->
+                            
                         </li>
                         <li>
                             <a href="/form_login2"><i class="fa fa-table fa-fw"></i> เข้าสู่ระบบ</a>
@@ -80,6 +80,12 @@
                         </li>
                         <li>
                             <a href="/list_users"><i class="fa fa-table fa-fw"></i> สมาชิก</a>
+                        </li>
+                        <li>
+                            <a href="/std_form"><img src="icon/check-form.png"> บันทึกข้อมูลนักศึกษา</a>
+                        </li>
+                        <li>
+                            <a href="/std_show"><img src="icon/check-form.png"> แสดงข้อมูลนักศึกษา</a>
                         </li>
                     </ul>
                 </div>
