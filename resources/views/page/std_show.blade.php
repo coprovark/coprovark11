@@ -64,8 +64,10 @@
         ?>
         <td>{{ $facultyID }}</td>
         <td>            
-            <button type="button" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="ลบข้อมูล" onclick="return _confirm('{{ $item->id }}')"><img src="icon/close-cross.png"></button>
-            <button type="button" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="แก้ไขข้อมูล"><img src="icon/edit.png"></button>
+            <button type="button" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="ลบข้อมูล" onclick="return _confirm('{{ $item->id }}')">
+                <img src="icon/close-cross.png"></button>
+            <button type="button" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="แก้ไขข้อมูล">
+                <img src="icon/edit.png"></button>
         </td>
     </tr>
     @endforeach

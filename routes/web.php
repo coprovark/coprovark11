@@ -106,6 +106,8 @@ Route::get('delete_user/{id}', function ($id) {
 Route::get('/delete_user/{id}','UsersController@delete_users');//ลบ
 Route::get('/form_register_save','UsersController@form_register_save');//เพิ่ม
 Route::post('/list_users_find','UsersController@list_users_find');//ค้นหา
+Route::get('/list_user_edit/{id}','UsersController@list_user_edit');//แก้ไข
+Route::post('/list_user_update','UsersController@list_user_update');//แก้ไข
 //==============================================
 
     //ข้อมูลนักศึกษา
@@ -121,3 +123,129 @@ Route::get('/std_show','UsersController@std_show');//แสดงผลในต
 Route::get('/delete_std/{id}','UsersController@delete_std');//ลบ
 Route::get('/save_std','UsersController@save_std');//เพิ่ม
 Route::post('/find_std','UsersController@find_std');//ค้นหา
+//---------------------------------------------
+//CO-PROVARK
+Route::get('/co_register', function () {
+    return view('page.co_register');
+});
+Route::get('/co_member', function () {
+    return view('page.co_member');
+});
+Route::get('/co_detail', function () {
+    return view('page.co_detail');
+});
+
+
+//===================?????????=============================================//
+Route::get('/co_main_show', function () {
+    return view('page.co_main_show');
+});
+Route::get('/co_main_register', function () {
+    return view('page.co_main_register');
+});
+//===================?????????=============================================//
+
+Route::get('/co_blood_show', function () {
+    return view('page.co_blood_show');
+});
+Route::get('/co_blood_register', function () {
+    return view('page.co_blood_register');
+});
+//===================?????????=============================================//
+Route::get('/co_branch_show', function () {
+    return view('page.co_branch_show');
+});
+Route::get('/co_branch_register', function () {
+    return view('page.co_branch_register');
+});
+//===================?????????=============================================//
+Route::get('/co_citizenship_show', function () {
+    return view('page.co_citizenship_show');
+});
+Route::get('/co_citizenship_register', function () {
+    return view('page.co_citizenship_register');
+});
+//===================?????????=============================================//
+Route::get('/co_faculty_show', function () {
+    return view('page.co_faculty_show');
+});
+Route::get('/co_faculty_register', function () {
+    return view('page.co_faculty_register');
+});
+//===================?????????=============================================//
+Route::get('/co_gender_show', function () {
+    return view('page.co_gender_show');
+});
+Route::get('/co_gender_register', function () {
+    return view('page.co_gender_register');
+});
+//===================?????????=============================================//
+Route::get('/co_institution_show', function () {
+    return view('page.co_institution_show');
+});
+Route::get('/co_institution_register', function () {
+    return view('page.co_institution_register');
+});
+//===================?????????=============================================//
+Route::get('/co_level_show', function () {
+    return view('page.co_level_show');
+});
+Route::get('/co_level_register', function () {
+    return view('page.co_level_register');
+});
+//===================?????????=============================================//
+Route::get('/co_nationality_show', function () {
+    return view('page.co_nationality_show');
+});
+Route::get('/co_nationality_register', function () {
+    return view('page.co_nationality_register');
+});
+//===================?????????=============================================//
+Route::get('/co_religion_show', function () {
+    return view('page.co_religion_show');
+});
+Route::get('/co_religion_register', function () {
+    return view('page.co_religion_register');
+});
+//===================?????????=============================================//
+Route::get('/co_status_show', function () {
+    return view('page.co_status_show');
+});
+Route::get('/co_status_register', function () {
+    return view('page.co_status_register');
+});
+//===================?????????=============================================//
+Route::get('/co_style_show', function () {
+    return view('page.co_style_show');
+});
+Route::get('/co_style_register', function () {
+    return view('page.co_style_register');
+});
+//===================?????????=============================================//
+Route::get('/co_titlename_show', function () {
+    return view('page.co_titlename_show');
+});
+Route::get('/co_titlename_register', function () {
+    return view('page.co_titlename_register');
+});
+//===================?????????=============================================//
+Route::get('/co_tpyestudent_show', function () {
+    return view('page.co_tpyestudent_show');
+});
+Route::get('/co_tpyestudent_register', function () {
+    return view('page.co_tpyestudent_register');
+});
+//===================?????????=============================================//
+Route::get('/co_typeuser_show', function () {
+    return view('page.co_typeuser_show');
+});
+Route::get('/co_typeuser_register', function () {
+    return view('page.co_typeuser_register');
+});
+//===================?????????=============================================//
+Route::get('/co_user_show', function () {
+    return view('page.co_user_show');
+});
+Route::get('/co_user_register', function () {
+    return view('page.co_user_register');
+});

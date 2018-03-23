@@ -55,7 +55,7 @@
     </div>
     <!-- สาขา -->
     <div class="form-group form-inline">
-        <label class="col-sm-3">สาขาวิชา</label>        
+        <label class="col-sm-3">สาขาวิชา</label>
         <input type="radio" name="MajorID" value="1" > CS &emsp;&emsp;
         <input type="radio" name="MajorID" value="2" > SE &emsp;&emsp;
         <input type="radio" name="MajorID" value="3" > IMA &emsp;&emsp;

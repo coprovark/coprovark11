@@ -32,7 +32,7 @@
         <td>{{ $item->status }}</td>
         <td>
             <button type="button" class="btn btn-danger" onclick="return _confirm('{{ $item->id }}')">ลบ</button>
-            <button type="button" class="btn btn-info">แก้ไข</button>
+            <a href="/list_user_edit/{{ $item->id }}" class="btn btn-info">แก้ไข</a>
         </td>
     </tr>
     @endforeach

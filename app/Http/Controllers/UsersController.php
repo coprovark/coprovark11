@@ -52,8 +52,8 @@ class UsersController extends Controller
            return "เกิดข้อผิดพลาด";
         }       
     }
-//------------------------------------------------
-//นักศึกษา
+    //------------------------------------------------
+        //นักศึกษา
     //แสดง
     public function std_show(){
         $find = '';
@@ -108,5 +108,40 @@ class UsersController extends Controller
            'find'=>$find
         ]);
         return $req;
+    }
+    //แก้ไข
+    public function list_user_edit(Request $req){
+        $find = $req->id;
+        $user = DB::table('users')
+                    ->select('*')
+                    ->where('id','=',$find)
+                    ->get();
+       return view('page.list_user_edit',[
+           'user'=>$user
+        ]);
+    }
+     //อัพเดทข้อมูล user
+     public function list_user_update(Request $req){
+        $user_code      = $req->user_code;
+        $user_name      = $req->user_name;
+        $user_password  = $req->user_password;
+        $data = [
+            'username'=>$user_name,
+            'password'=>$user_password,
+        ];
+        $status = DB::table('users')
+                    ->where('id', $user_code)
+                    ->update($data);
+        return redirect('list_users');
+    }
+//------------------------------------------------
+    //CO-PROVARK
+    public function co_show(){
+        $find = '';
+        $co = DB::table('co_main')->select('*')->get();
+       return view('page.co_member',[
+           'co_show'=>$co,
+           'find'=>$find
+        ]);
     }
 }
