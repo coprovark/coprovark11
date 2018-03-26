@@ -124,6 +124,7 @@ Route::get('/delete_std/{id}','UsersController@delete_std');//ลบ
 Route::get('/save_std','UsersController@save_std');//เพิ่ม
 Route::post('/find_std','UsersController@find_std');//ค้นหา
 //---------------------------------------------
+
 //CO-PROVARK
 Route::get('/co_register', function () {
     return view('page.co_register');
@@ -134,5 +135,13 @@ Route::get('/co_member', function () {
 Route::get('/co_detail', function () {
     return view('page.co_detail');
 });
+Route::get('/co_member','UsersController@co_show');//แสดงผลในตาราง
+Route::post('/find_co','UsersController@find_co');//ค้นหา
+Route::get('/co_insert','UsersController@co_insert');//เพิ่ม
+Route::get('/co_register','UsersController@list');//เพิ่ม->แสดง list คำนำหน้า,สาขา
+Route::get('/delete_co/{id}','UsersController@delete_co');//ลบ
+Route::get('/co_detail/{id}','UsersController@co_detail');//รายละเอียด
+Route::get('/co_edit/{id}','UsersController@co_edit');//แก้ไข
+
 
 

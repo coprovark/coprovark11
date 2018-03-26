@@ -69,54 +69,6 @@
                                 <li>
                                     <a href="/co_member">สมาชิก</a>
                                 </li>
-                                <!-- <li>
-                                    <a href="/co_main_show">co_main</a>
-                                </li>
-                                <li>
-                                    <a href="/co_blood_show">co_blood</a>
-                                </li>  
-                                <li>
-                                    <a href="/co_branch_show">co_branch</a>
-                                </li>
-                                <li>
-                                    <a href="/co_citizenship_show">co_citizenship</a>
-                                </li>  
-                                <li>
-                                    <a href="/co_faculty_show">co_faculty</a>
-                                </li>
-                                <li>
-                                    <a href="/co_gender_show">co_gender</a>
-                                </li>  
-                                <li>
-                                    <a href="/co_institution_show">co_institution</a>
-                                </li>
-                                <li>
-                                    <a href="/co_level_show">co_level</a>
-                                </li>  
-                                <li>
-                                    <a href="/co_nationality_show">co_nationality</a>
-                                </li>
-                                <li>
-                                    <a href="/co_religion_show">co_religion</a>
-                                </li>                              
-                                <li>
-                                    <a href="/co_status_show">co_status</a>
-                                </li>
-                                <li>
-                                    <a href="/co_style_show">co_style</a>
-                                </li>  
-                                <li>
-                                    <a href="/co_titlename_show">co_titlename</a>
-                                </li>
-                                <li>
-                                    <a href="/co_tpyestudent_show">co_tpyestudent</a>
-                                </li>  
-                                <li>
-                                    <a href="/co_typeuser_show">co_typeuser</a>
-                                </li>
-                                <li>
-                                    <a href="/co_user_show">co_user</a>
-                                </li>   -->
                             </ul>
                             
                         </li>

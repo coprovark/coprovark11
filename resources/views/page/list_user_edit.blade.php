@@ -21,20 +21,6 @@
         <label class="col-sm-3">user_password</label>
         <input type="text" value="{{ $users->password }}" class="form-control" style="width:70%" placeholder="รหัสนักศึกษา" name="user_password" >
     </div>
-    <!--ระดับการเข้าถึงข้อมูล-->
-    <div class="form-group form-inline">
-        <label class="col-sm-3">user_level</label>        
-        <select class="form-control" name="user_level">
-            <option value="1">Admin</option>
-            <option value="2">User</option>
-        </select>&nbsp;
-    </div>
-    <!-- สถานะการใช้งาน -->
-    <div class="form-group form-inline">
-        <label class="col-sm-3">สถานะการใช้งาน</label>        
-        <input type="radio" name="user_enable" value="1" > เปิด &emsp;&emsp;
-        <input type="radio" name="user_enable" value="0" > ปิด &emsp;&emsp;
-    </div>
     <div class="col-sm-3"></div>
     <button type="submit" class="btn btn-success">บันทึก</button>
     <button type="button" class="btn btn-danger">ยกเลิก</button>

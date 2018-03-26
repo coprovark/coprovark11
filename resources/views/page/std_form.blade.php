@@ -9,7 +9,7 @@
     <!-- รหัสนักศึกษา -->
     <div class="form-group form-inline">
         <label class="col-sm-3">รหัสนักศึกษา</label>
-        <input type="text" class="form-control" style="width:70%" placeholder="รหัสนักศึกษา" name="StdID" >
+        <input type="text" class="form-control" style="width:30%" placeholder="รหัสนักศึกษา" name="StdID" >
     </div>
     <!--ชื่อ-->
     <div class="form-group form-inline">
@@ -31,7 +31,7 @@
     <!-- วัน เดือน ปีเกิด -->
     <div class="form-group form-inline">
         <label class="col-sm-3">วัน เดือน ปีเกิด</label>
-        <input class="form-control form-control-sm" type="Date" name="Birthday" id="date" onchange="calAge(this)">        
+        <input class="form-control form-control-sm" type="Date" name="Birthday" id="date" onchange="calAge(this)">
         &emsp;&emsp;&emsp;&emsp;
         <label>อายุ(ปี)</label>&emsp;
         <input type="text" class="form-control" style="width:10%" placeholder="อายุ(ปี)" readonly id="age">
