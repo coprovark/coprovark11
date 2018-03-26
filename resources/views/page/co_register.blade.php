@@ -80,7 +80,6 @@
                 <option value="11">คณะบริหารธุรกิจและการจัดการ</option>
             </select>
         </div>
-
         <!-- ชั้นปี -->
         <div class="col-sm-3">
             <label>ชั้นปี</label>
