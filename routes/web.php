@@ -142,6 +142,8 @@ Route::get('/co_register','UsersController@list');//เพิ่ม->แสด�
 Route::get('/delete_co/{id}','UsersController@delete_co');//ลบ
 Route::get('/co_detail/{id}','UsersController@co_detail');//รายละเอียด
 Route::get('/co_edit/{id}','UsersController@co_edit');//แก้ไข
+Route::post('/co_update','UsersController@co_update');//อัพเดต
+
 
 
 

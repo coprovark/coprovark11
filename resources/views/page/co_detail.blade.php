@@ -25,8 +25,8 @@
 			</div>
 		</div>
 		<div class="row" style="padding:10px 0 0 10px;">
-			<label>เลขที่</label> {{ $item->main_id }}<br>
-			<label>วันที่</label> {{ $item->main_date }}
+			<label>เลขที่</label>&emsp;{{ $item->main_id }}<br>
+			<label>วันที่</label>&emsp;{{ $item->main_date }}
 		</div>
 	</div>
 	<div class="col-sm-8" style="border-bottom:1px solid black; border-top:1px solid black; height:150px;">

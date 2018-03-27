@@ -35,7 +35,9 @@
     </tr>
     @foreach($co_show as $item)
     <tr>
-        <td></td>
+        <td>
+            
+        </td>
         <td style="text-align:center;">{{ $item->main_studentCode }}</td>
         <td>{{ $item->title_name }}{{ $item->main_name }}</td>
         <td style="text-align:center;">{{ $item->main_birthday}}</td>

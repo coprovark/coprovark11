@@ -141,6 +141,7 @@ class UsersController extends Controller
             ->join('co_faculty', 'co_main.main_faculty', '=', 'co_faculty.faculty_id')
             ->select('co_main.*', 'co_titlename.title_name', 'co_faculty.faculty_name')
             ->get();
+        
         return view('page.co_member', [
            'co_show'=>$co,
            'find'=>$find
@@ -153,7 +154,7 @@ class UsersController extends Controller
             ->join('co_titlename', 'co_main.main_titleName', '=', 'co_titlename.title_id')
             ->join('co_faculty', 'co_main.main_faculty', '=', 'co_faculty.faculty_id')
             ->select('co_main.*', 'co_titlename.title_name', 'co_faculty.faculty_name')
-            ->where('main_studentCode','like',$find)
+            ->where('main_studentCode','like', "%$find%")
             ->get();
        return view('page.co_member',[
            'co_show'=>$co,
@@ -268,14 +269,76 @@ class UsersController extends Controller
         $id = $req->id;
         $co = DB::table('co_main')
             ->join('co_titlename', 'co_main.main_titleName', '=', 'co_titlename.title_id')
-            ->select('co_main.*', 
-                    'co_titlename.title_id')
+            ->join('co_branch', 'co_main.main_branch', '=', 'co_branch.branch_id')
+            ->join('co_faculty', 'co_main.main_faculty', '=', 'co_faculty.faculty_id')
+            ->join('co_level', 'co_main.main_level', '=', 'co_level.level_id')
+            ->join('co_institution', 'co_main.main_institution', '=', 'co_institution.institution_id')
+            ->join('co_citizenship', 'co_main.main_citizenship', '=', 'co_citizenship.citizenship_id')
+            ->join('co_nationality', 'co_main.main_nationality', '=', 'co_nationality.nationality_id')
+            ->join('co_religion', 'co_main.main_religion', '=', 'co_religion.religion_id')
+            ->select('*')
             ->where('main_id', '=', $id)
             ->get();
         $titlename = DB::table('co_titlename')->select('*')->get();
+        $branch = DB::table('co_branch')->select('*')->get();
+        $faculty = DB::table('co_faculty')->select('*')->get();
+        $level = DB::table('co_level')->select('*')->get();
+        $institution = DB::table('co_institution')->select('*')->get();
+        $citizenship = DB::table('co_citizenship')->select('*')->get();
+        $nationality = DB::table('co_nationality')->select('*')->get();
+        $religion = DB::table('co_religion')->select('*')->get();
         return view('page.co_edit', [
             'co'=>$co,
-            'title'=>$titlename
+            'title'=>$titlename,
+            'branch'=>$branch,
+            'faculty'=>$faculty,
+            'level'=>$level,
+            'institution'=>$institution,
+            'citizenship'=>$citizenship,
+            'nationality'=>$nationality,
+            'religion'=>$religion
         ]);
+    }
+    //อัพเดต
+    public function co_update(Request $req){
+        $id = $req->ID;
+        $ls = implode(",",$req->STYLE);
+        $data = [
+            'main_date'         => $req->DAY,
+            'main_tpyeUser'     => $req->TPYEUSER,
+            'main_studentCode'  => $req->STUDENTCODE,
+            'main_IDcard'       => $req->IDCARD,
+            'main_titleName'    => $req->TITLENAME,
+            'main_name'         => $req->NAME,
+            'main_nickname'     => $req->NICKNAME,
+            'main_branch'       => $req->BRANCH,
+            'main_faculty'      => $req->FACULTY,
+            'main_level'        => $req->LEVEL,
+            'main_grade'        => $req->GRADE,
+            'main_institution'  => $req->INSTITUTION,
+            'main_tpyestudent'  => $req->TPYESTUDENT,
+            'main_style'        => $ls,
+            'main_birthday'     => $req->BRITHDAY,
+            'main_age'          => $req->AGE,
+            'main_gender'       => $req->GENDER,
+            'main_weigth'       => $req->WEIGHT,
+            'main_height'       => $req->HEIGHT,
+            'main_blood'        => $req->BLOOD,
+            'main_status'       => $req->STATUS,
+            'main_citizenship'  => $req->CITIZENSHIP,
+            'main_nationality'  => $req->NATIONALITY,
+            'main_religion'     => $req->RELIGION,
+            'main_perAddress'   => $req->PER_ADDRESS,
+            'main_preAddress'   => $req->PRE_ADDRESS,
+            'main_phone'        => $req->PHONE,
+            'main_mobile'       => $req->MOBILE,
+            'main_email'        => $req->E_MAIL,
+            'main_facebook'     => $req->FACEBOOK,
+            'main_website'      => $req->WEB
+        ];
+        $status = DB::table('co_main')
+                    ->where('main_id', $id)
+                    ->update($data);
+        return redirect('co_member');
     }
 }

@@ -16,6 +16,7 @@
 <br>
 @foreach($co as $edit)
 <form action="/co_update" method="post">
+    <input type="hidden" name="ID" value="{{ $edit->main_id }}">
     <div class="form-group form-inline">
         <label>วันที่แก้ไขข้อมูล</label>
         <input class="form-control form-control-sm" type="Date" name="DAY">
@@ -42,13 +43,10 @@
         <!-- ชื่อ-สกุล -->
         <div class="form-group form-inline">
             <label class="col-sm-3">ชื่อ-สกุล</label>         
-            <select class="form-control" name="TITLENAME">      
-                <option value="{{ $item->title_id }}" 
-                    <?php 
-                        if($item->title_id == '$edit->title_id') echo "selected"; 
-                    ?>>
-                    {{ $item->title_name }}
-                </option>
+            <select class="form-control" name="TITLENAME">
+            @foreach($title as $item)
+                <option value="{{ $item->title_id }}"<?php if($item->title_id == $edit->title_id) echo "selected";?>>{{ $item->title_name }}</option>;
+            @endforeach
             </select>         
             <input type="text" class="form-control" style="width:40%;" value="{{ $edit->main_name }}" placeholder="่ชื่อ-สกุล" name="NAME" >
         </div>
@@ -61,22 +59,27 @@
         <div class="form-group form-inline">
             <label class="col-sm-3">สาขาวิชา</label>
             <select class="form-control" style="width:50%" name="BRANCH">
-           
+            @foreach($branch as $item)
+            <option value="{{ $item->branch_id }}"<?php if($item->branch_id == $edit->branch_id) echo "selected";?>>{{ $item->branch_name }}</option>;
+            @endforeach
             </select>            
         </div>
         <!-- คณะ -->
         <div class="form-group form-inline">
             <label class="col-sm-3">คณะ</label>        
             <select class="form-control" style="width:50%" name="FACULTY">
-            
-                
+            @foreach($faculty as $item)
+            <option value="{{ $item->faculty_id }}"<?php if($item->faculty_id == $edit->faculty_id) echo "selected";?>>{{ $item->faculty_name }}</option>;
+            @endforeach
             </select>
         </div>
         <!-- ชั้นปี -->
         <div class="form-group form-inline">
             <label class="col-sm-3">ชั้นปี</label>
             <select class="form-control" style="width:50%" name="LEVEL">
-           
+            @foreach($level as $item)
+            <option value="{{ $item->level_id }}"<?php if($item->level_id == $edit->level_id) echo "selected";?>>{{ $item->level_name }}</option>;
+            @endforeach
             </select>            
         </div>
         <!-- เกรด -->
@@ -88,7 +91,9 @@
         <div class="form-group form-inline">
             <label class="col-sm-3">สถาบันการศึกษา</label>
             <select class="form-control" style="width:50%" name="INSTITUTION">
-          
+            @foreach($institution as $item)
+            <option value="{{ $item->institution_id }}"<?php if($item->institution_id == $edit->institution_id) echo "selected";?>>{{ $item->institution_name }}</option>;
+            @endforeach
             </select>            
         </div>
         <!-- ประเภทนักศึกษา -->
@@ -101,11 +106,15 @@
         <!-- Learning Style -->
         <div class="form-group form-inline">
             <label class="col-sm-3">Learning Style</label>
-            <label class="checkbox-inline"><input type="checkbox" name="STYLE[]" value="V" <?php if($edit->main_style == 'V') echo "checked"; ?>> V</label>
-            <label class="checkbox-inline"><input type="checkbox" name="STYLE[]" value="A" <?php if($edit->main_style == 'A') echo "checked"; ?>> A</label>
-            <label class="checkbox-inline"><input type="checkbox" name="STYLE[]" value="R" <?php if($edit->main_style == 'R') echo "checked"; ?>> R</label>
-            <label class="checkbox-inline"><input type="checkbox" name="STYLE[]" value="K" <?php if($edit->main_style == 'K') echo "checked"; ?>> K</label>
-            <label class="checkbox-inline"><input type="checkbox" name="STYLE[]" value="Model" <?php if($edit->main_style == 'Model') echo "checked"; ?>> Model</label>
+        <?php 
+            $ls = $edit->main_style;
+            $arr = explode(",",$ls);
+        ?>
+            <label class="checkbox-inline"><input type="checkbox" name="STYLE[]" value="V" <?php foreach($arr as $value){if($value == 'V') echo "checked";} ?>> V</label>
+            <label class="checkbox-inline"><input type="checkbox" name="STYLE[]" value="A" <?php foreach($arr as $value){if($value == 'A') echo "checked";} ?>> A</label>
+            <label class="checkbox-inline"><input type="checkbox" name="STYLE[]" value="R" <?php foreach($arr as $value){if($value == 'R') echo "checked";} ?>> R</label>
+            <label class="checkbox-inline"><input type="checkbox" name="STYLE[]" value="K" <?php foreach($arr as $value){if($value == 'K') echo "checked";} ?>> K</label>
+            <label class="checkbox-inline"><input type="checkbox" name="STYLE[]" value="Model" <?php foreach($arr as $value){if($value == 'Model') echo "checked";} ?>> Model</label>        
         </div>
         <!-- วันเกิด/อายุ -->
         <div class="form-group form-inline">
@@ -113,7 +122,7 @@
             <input class="form-control form-control-sm" type="Date" name="BRITHDAY" value="{{ $edit->main_birthday }}" id="date" onchange="calAge(this)">        
                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
             <label>อายุ(ปี)</label>&emsp;
-            <input type="text" class="form-control" style="width:10%" name="AGE"  placeholder="อายุ(ปี)" readonly id="AGE">
+            <input type="text" class="form-control" style="width:10%" name="AGE" value="{{ $edit->main_age }}" placeholder="อายุ(ปี)" readonly id="AGE">
         </div>
         <!-- เพศ -->
         <div class="form-group form-inline">
@@ -151,32 +160,38 @@
         <div class="form-group form-inline">
             <label class="col-sm-3">สัญชาติ</label>
             <select class="form-control" style="width:50%" name="CITIZENSHIP">
-
+            @foreach($citizenship as $item)
+            <option value="{{ $item->citizenship_id }}"<?php if($item->citizenship_id == $edit->citizenship_id) echo "selected";?>>{{ $item->citizenship_name }}</option>;
+            @endforeach
             </select>            
         </div>
         <!-- เชื้อชาติ -->
         <div class="form-group form-inline">
             <label class="col-sm-3">เชื้อชาติ</label>
             <select class="form-control" style="width:50%" name="NATIONALITY">
-
+            @foreach($nationality as $item)
+            <option value="{{ $item->nationality_id }}"<?php if($item->nationality_id == $edit->nationality_id) echo "selected";?>>{{ $item->nationality_name }}</option>;
+            @endforeach
             </select>            
         </div>
         <!-- ศาสนา -->
         <div class="form-group form-inline">
             <label class="col-sm-3">ศาสนา</label>
             <select class="form-control" style="width:50%" name="RELIGION">
-
+            @foreach($religion as $item)
+            <option value="{{ $item->religion_id }}"<?php if($item->religion_id == $edit->religion_id) echo "selected";?>>{{ $item->religion_name }}</option>;
+            @endforeach
             </select>            
         </div>
         <!-- ภูมิลำเนา -->
         <div class="form-group form-inline">
             <label class="col-sm-3">ที่อยู่ตามภูมิลำเนา</label>
-            <textarea class="form-control" style="width:50%" rows="4" value="123" placeholder="ที่อยู่ตามภูมิลำเนา" name="PER_ADDRESS"></textarea>
+            <textarea class="form-control" style="width:50%" rows="4" placeholder="ที่อยู่ตามภูมิลำเนา" name="PER_ADDRESS">{{ $edit->main_perAddress }}</textarea>
         </div>
         <!-- ปัจจุบัน -->
         <div class="form-group form-inline">
             <label class="col-sm-3">ที่อยู่ตามปัจจุบัน</label>
-            <textarea class="form-control" style="width:50%" rows="4" value="{{ $edit->main_preAddress }}" placeholder="ที่อยู่ตามปัจจุบัน" name="PRE_ADDRESS"></textarea>
+            <textarea class="form-control" style="width:50%" rows="4" placeholder="ที่อยู่ตามปัจจุบัน" name="PRE_ADDRESS">{{ $edit->main_preAddress }}</textarea>
         </div>
         <!-- โทรศัพท์ -->
         <div class="form-group form-inline">
