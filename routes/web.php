@@ -74,6 +74,7 @@ Route::get('/form_login', function () {
     $data = ["USER"=>"",'PASSWORD'=>""];
     return view('page.form_login',$data);
 });
+
 //------------------------------------------------------
 //เชื่อมฐานข้อมูล
 Route::get('/form_check_login', function () {
@@ -96,6 +97,7 @@ Route::get('/form_login2', function () {
     return view('page.form_login',$array);
 });
 Route::post('/form_login2','PageController@form_login2');
+
 //------------------------------------------------
 //หน้าสมาชิก
 Route::get('/list_users','UsersController@list_users');
@@ -108,9 +110,8 @@ Route::get('/form_register_save','UsersController@form_register_save');//เพ�
 Route::post('/list_users_find','UsersController@list_users_find');//ค้นหา
 Route::get('/list_user_edit/{id}','UsersController@list_user_edit');//แก้ไข
 Route::post('/list_user_update','UsersController@list_user_update');//แก้ไข
-//==============================================
 
-    //ข้อมูลนักศึกษา
+//----------ข้อมูลนักศึกษา-----------------------------------
 //หน้าบันทึกข้อมูลนักศึกษา
 Route::get('/std_form', function () {
     return view('page.std_form');
@@ -123,9 +124,8 @@ Route::get('/std_show','UsersController@std_show');//แสดงผลในต
 Route::get('/delete_std/{id}','UsersController@delete_std');//ลบ
 Route::get('/save_std','UsersController@save_std');//เพิ่ม
 Route::post('/find_std','UsersController@find_std');//ค้นหา
-//---------------------------------------------
 
-//CO-PROVARK
+//--------CO-PROVARK------------------------------------
 Route::get('/co_register', function () {
     return view('page.co_register');
 });
@@ -144,6 +144,11 @@ Route::get('/co_detail/{id}','UsersController@co_detail');//รายละเ�
 Route::get('/co_edit/{id}','UsersController@co_edit');//แก้ไข
 Route::post('/co_update','UsersController@co_update');//อัพเดต
 
-
-
-
+//------Upload File-----------------------------------------
+// Route::get('/upload1', function () {
+//     return view('file.upload');
+// });
+Route::get('/upload1','FileController@show');
+Route::post('/upload1','FileController@upload');//upload
+Route::get('/dl/{path}/{name}','FileController@dl');//download
+Route::get('/rm/{ID}','FileController@rm');//ddelete

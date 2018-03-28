@@ -144,6 +144,7 @@ class UsersController extends Controller
         
         return view('page.co_member', [
            'co_show'=>$co,
+           'id'=> 1,
            'find'=>$find
         ]);
     }
@@ -186,10 +187,6 @@ class UsersController extends Controller
     //รายละเอียด
     public function co_detail(Request $req){
         $id = $req->id;
-        // $co = DB::table('co_main')
-        //             ->select('*')
-        //             ->where('main_id','=',$id)
-        //             ->get();
         $co = DB::table('co_main')
             ->join('co_titlename', 'co_main.main_titleName', '=', 'co_titlename.title_id')
             ->join('co_branch', 'co_main.main_branch', '=', 'co_branch.branch_id')
@@ -216,7 +213,7 @@ class UsersController extends Controller
     }    
     //เพิ่ม
     public function co_insert(Request $req){
-        $ls = implode(",",$req->STYLE);
+        $ls = implode(",",$req->STYLE);        
         $status = DB::table('co_main')->insert(
           [            
             'main_date'         => $req->DAY,
@@ -341,4 +338,5 @@ class UsersController extends Controller
                     ->update($data);
         return redirect('co_member');
     }
+    //-------------------------------------------------
 }

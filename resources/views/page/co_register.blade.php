@@ -15,9 +15,13 @@
 </div>
 <br>
 <form action="/co_insert" method="get">
-    <div class="form-group form-inline">
-        <label>วันที่กรอกข้อมูล</label>
-        <input class="form-control form-control-sm" type="Date" name="DAY">
+    <div class="form-group form-inline row">
+        <label class="col-sm-2">วันที่กรอกข้อมูล</label>
+        <input class="form-control form-control-sm" type="text" value="{{ date("Y/m/d") }}" name="DAY" readonly>
+    </div>
+    <div class="row">
+        <label class="col-sm-2">เพิ่มรูปภาพ</label>
+        <input type="file" name="PICTURE">
     </div>
     <hr>
     <div class="container-fluid">

@@ -19,7 +19,7 @@
     <input type="hidden" name="ID" value="{{ $edit->main_id }}">
     <div class="form-group form-inline">
         <label>วันที่แก้ไขข้อมูล</label>
-        <input class="form-control form-control-sm" type="Date" name="DAY">
+        <input class="form-control form-control-sm" type="text" value="{{ date("Y/m/d") }}" name="DAY" readonly>
     </div>
     <hr>
     <div class="container-fluid">

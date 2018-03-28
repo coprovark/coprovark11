@@ -1,7 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
-//เรียกใช้
+namespace App\Http\Controllers;//เรียกใช้
 use App\Page;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller; //สืบทอดคุณสมบัติ
