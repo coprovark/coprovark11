@@ -59,7 +59,7 @@ class FileController extends Controller
                     'FileName' => $name, 
                     'FileType' => $type, 
                     'FilePath' => $namefile, 
-                    'FileSize' => $size/1024, // -> KB 
+                    'FileSize' => round($size/1024,2) // -> KB 
                     ]);
             $file->move('upload',$namefile);
             echo "upload success";
@@ -89,7 +89,7 @@ class FileController extends Controller
                     'FileName' => $name, 
                     'FileType' => $type, 
                     'FilePath' => $namefile, 
-                    'FileSize' => $size/1024, // -> KB 
+                    'FileSize' => round($size/1024,2) // -> KB 
                 ]
             );
  

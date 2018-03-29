@@ -159,7 +159,8 @@ class UsersController extends Controller
             ->get();
        return view('page.co_member',[
            'co_show'=>$co,
-           'find'=>$find
+           'find'=>$find,
+           'id' =>1
         ]);
         return $req;
     }

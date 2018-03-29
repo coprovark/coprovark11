@@ -40,7 +40,7 @@
 	</div>
 	<div class="col-sm-2" style="border:1px solid black; height:150px;">
 		<center>
-            <img src="picture/{{ $item->pic_path }}">
+			<img src="{{ asset('picture/'.$item->pic_path) }}" width="145px">
 		</center>
 	</div>
 </div>
