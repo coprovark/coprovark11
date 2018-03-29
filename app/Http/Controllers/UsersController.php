@@ -188,6 +188,7 @@ class UsersController extends Controller
     public function co_detail(Request $req){
         $id = $req->id;
         $co = DB::table('co_main')
+            ->join('co_picture', 'co_main.main_pic', '=', 'co_picture.pic_name')
             ->join('co_titlename', 'co_main.main_titleName', '=', 'co_titlename.title_id')
             ->join('co_branch', 'co_main.main_branch', '=', 'co_branch.branch_id')
             ->join('co_faculty', 'co_main.main_faculty', '=', 'co_faculty.faculty_id')
@@ -196,15 +197,16 @@ class UsersController extends Controller
             ->join('co_citizenship', 'co_main.main_citizenship', '=', 'co_citizenship.citizenship_id')
             ->join('co_nationality', 'co_main.main_nationality', '=', 'co_nationality.nationality_id')
             ->join('co_religion', 'co_main.main_religion', '=', 'co_religion.religion_id')
-            ->select('co_main.*', 
-                'co_titlename.title_name',
-                'co_branch.branch_name',                
-                'co_faculty.faculty_name',
-                'co_level.level_name',
-                'co_institution.institution_name',
-                'co_citizenship.citizenship_name',
-                'co_nationality.nationality_name',
-                'co_religion.religion_name')
+            ->select('co_main.*',
+                'co_picture.*',
+                'co_titlename.*',
+                'co_branch.*',                
+                'co_faculty.*',
+                'co_level.*',
+                'co_institution.*',
+                'co_citizenship.*',
+                'co_nationality.*',
+                'co_religion.*')
             ->where('main_id', '=', $id)
             ->get();
         return view('page.co_detail', [
@@ -213,6 +215,24 @@ class UsersController extends Controller
     }    
     //เพิ่ม
     public function co_insert(Request $req){
+        //ข้อมูลรูป-------------------------------------
+        $file = $req->file('PICTURE');
+        $randomeName = rand(1001,9999);
+        if ($req->hasFile('PICTURE')) {
+            $type = $req->PICTURE->extension();
+            $namefile =  $randomeName.'.'.$type;
+            $size = $file->getClientSize();
+            DB::table('co_picture')->insert(
+                [
+                    'pic_name' => $randomeName, 
+                    'pic_type' => $type, 
+                    'pic_path' => $namefile, 
+                    'pic_size' => $size/1024, // -> KB 
+                ]
+            );
+            $file->move('picture',$namefile);
+        }
+        //ข้อมูล text-----------------------------------
         $ls = implode(",",$req->STYLE);        
         $status = DB::table('co_main')->insert(
           [            
@@ -246,7 +266,8 @@ class UsersController extends Controller
             'main_mobile'       => $req->MOBILE,
             'main_email'        => $req->E_MAIL,
             'main_facebook'     => $req->FACEBOOK,
-            'main_website'      => $req->WEB
+            'main_website'      => $req->WEB,
+            'main_pic'          => $randomeName
           ]
         );
         if($status){

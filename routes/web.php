@@ -137,7 +137,7 @@ Route::get('/co_detail', function () {
 });
 Route::get('/co_member','UsersController@co_show');//แสดงผลในตาราง
 Route::post('/find_co','UsersController@find_co');//ค้นหา
-Route::get('/co_insert','UsersController@co_insert');//เพิ่ม
+Route::post('/co_insert','UsersController@co_insert');//เพิ่ม
 Route::get('/co_register','UsersController@list');//เพิ่ม->แสดง list คำนำหน้า,สาขา
 Route::get('/delete_co/{id}','UsersController@delete_co');//ลบ
 Route::get('/co_detail/{id}','UsersController@co_detail');//รายละเอียด
@@ -148,7 +148,9 @@ Route::post('/co_update','UsersController@co_update');//อัพเดต
 // Route::get('/upload1', function () {
 //     return view('file.upload');
 // });
-Route::get('/upload1','FileController@show');
+Route::get('/upload1','FileController@show');//show
 Route::post('/upload1','FileController@upload');//upload
 Route::get('/dl/{path}/{name}','FileController@dl');//download
-Route::get('/rm/{ID}','FileController@rm');//ddelete
+Route::get('/rm/{ID}','FileController@rm');//delete
+Route::get('/ed/{ID}','FileController@ed');//edit
+Route::post('/update1','FileController@update1');//edit

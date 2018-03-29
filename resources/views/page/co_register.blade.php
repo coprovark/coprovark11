@@ -14,7 +14,7 @@
     <h3><img src="/icon/notes.png"> สมัครสมาชิก</h3>
 </div>
 <br>
-<form action="/co_insert" method="get">
+<form action="/co_insert" method="post" enctype="multipart/form-data">
     <div class="form-group form-inline row">
         <label class="col-sm-2">วันที่กรอกข้อมูล</label>
         <input class="form-control form-control-sm" type="text" value="{{ date("Y/m/d") }}" name="DAY" readonly>

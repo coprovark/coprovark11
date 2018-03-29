@@ -39,10 +39,8 @@
 		</center>
 	</div>
 	<div class="col-sm-2" style="border:1px solid black; height:150px;">
-		<center style="padding:40px 0 28px 0;">
-			<p>ขนาดรูปถ่าย</p>
-			<p>size</p>
-			<p>2" x 2"</p>
+		<center>
+            <img src="picture/{{ $item->pic_path }}">
 		</center>
 	</div>
 </div>
