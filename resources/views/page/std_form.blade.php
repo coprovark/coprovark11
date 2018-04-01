@@ -18,7 +18,7 @@
             <option value="นาย">นาย</option>
             <option value="นาง">นาง</option>
             <option value="นางสาว">นางสาว</option>
-        </select>&nbsp;
+        </select> &nbsp;
         <input type="text" class="form-control" style="width:60%" placeholder="่ชื่อ-สกุล" name="FullName" >
     </div>
     <!-- เพศ -->

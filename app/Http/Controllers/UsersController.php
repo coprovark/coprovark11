@@ -49,9 +49,8 @@ class UsersController extends Controller
            return "เกิดข้อผิดพลาด";
         }       
     }
-    //------------------------------------------------------------------
-        //นักศึกษา
-    //แสดง
+
+    //-------นักศึกษา-------------------------------------------
     public function std_show(){
         $find = '';
         $std = DB::table('coprovark_11')->select('*')->get();
@@ -59,14 +58,12 @@ class UsersController extends Controller
            'std_show'=>$std,
            'find'=>$find
         ]);
-    }
-    //ลบ
+    }//แสดง
     public function delete_std($id){
         //พารามิเตอร์ 3 ตัวใน where คือ ฟิล,เปรียบเทียบ,ค่าที่นำมาเปรียบ
         DB::table('coprovark_11')->where('id', '=', $id)->delete();
         return redirect('std_show');
-    }
-    //เพิ่ม
+    }//ลบ
     public function save_std(Request $req){
         $status = DB::table('coprovark_11')->insert(
           [            
@@ -92,8 +89,7 @@ class UsersController extends Controller
         }else{
            return "เกิดข้อผิดพลาด";
         }       
-    }
-    //ค้นหา
+    }//เพิ่ม
     public function find_std(Request $req){
         $find = $req->find;
         $std = DB::table('coprovark_11')
@@ -105,8 +101,7 @@ class UsersController extends Controller
            'find'=>$find
         ]);
         return $req;
-    }
-    //แก้ไข
+    }//ค้นหา
     public function list_user_edit(Request $req){
         $find = $req->id;
         $user = DB::table('users')
@@ -116,9 +111,8 @@ class UsersController extends Controller
        return view('page.list_user_edit',[
            'user'=>$user
         ]);
-    }
-     //อัพเดทข้อมูล user
-     public function list_user_update(Request $req){
+    }//แก้ไข
+    public function list_user_update(Request $req){
         $user_code      = $req->user_code;
         $user_name      = $req->user_name;
         $user_password  = $req->user_password;
@@ -130,10 +124,9 @@ class UsersController extends Controller
                     ->where('id', $user_code)
                     ->update($data);
         return redirect('list_users');
-    }
-//----------------------------------------------------------------------
-        //CO-PROVARK
-    //แสดง
+    }//อัพเดทข้อมูล user
+
+    //---------CO-PROVARK--------------------------------------
     public function co_show(){
         $find = '';        
         $co = DB::table('co_main')
@@ -147,8 +140,7 @@ class UsersController extends Controller
            'id'=> 1,
            'find'=>$find
         ]);
-    }
-    //ค้นหา
+    }//แสดง   
     public function find_co(Request $req){
         $find = $req->find;
         $co = DB::table('co_main')
@@ -163,8 +155,7 @@ class UsersController extends Controller
            'id' =>1
         ]);
         return $req;
-    }
-    //list
+    }//ค้นหา
     public function list(){
         $titlename = DB::table('co_titlename')->select('*')->get();
         $branch = DB::table('co_branch')->select('*')->get();
@@ -184,8 +175,7 @@ class UsersController extends Controller
             'nationality'=>$nationality,
             'religion'=>$religion
             ]);
-    }
-    //รายละเอียด
+    }//list
     public function co_detail(Request $req){
         $id = $req->id;
         $co = DB::table('co_main')
@@ -213,8 +203,7 @@ class UsersController extends Controller
         return view('page.co_detail', [
            'detail'=>$co
         ]);
-    }    
-    //เพิ่ม
+    }//รายละเอียด
     public function co_insert(Request $req){
         //ข้อมูลรูป-------------------------------------
         $file = $req->file('PICTURE');
@@ -276,14 +265,12 @@ class UsersController extends Controller
         }else{
            return "เกิดข้อผิดพลาด";
         }       
-    }
-    //ลบ
+    }//เพิ่ม
     public function delete_co($id){
         //พารามิเตอร์ 3 ตัวใน where คือ ฟิล,เปรียบเทียบ,ค่าที่นำมาเปรียบ
         DB::table('co_main')->where('main_id', '=', $id)->delete();
         return redirect('co_member');
-    }
-    //Edit
+    }//ลบ
     public function co_edit(Request $req){
         $id = $req->id;
         $co = DB::table('co_main')
@@ -317,8 +304,7 @@ class UsersController extends Controller
             'nationality'=>$nationality,
             'religion'=>$religion
         ]);
-    }
-    //อัพเดต
+    }//Edit
     public function co_update(Request $req){
         $id = $req->ID;
         $ls = implode(",",$req->STYLE);
@@ -359,6 +345,179 @@ class UsersController extends Controller
                     ->where('main_id', $id)
                     ->update($data);
         return redirect('co_member');
-    }
-    //-------------------------------------------------
-}
+    }//อัพเดต
+
+    //-------Gallery---------------------------------------
+    public function gallery_list(){
+        $find = '';
+        $gal = DB::table('g_gallery')->select('*')->get();
+        return view('page.g_gallery',[
+           'gallery'=>$gal,
+           'find'   =>$find,
+           'rank'   => 1
+        ]);
+    }//แสดง gallery
+    public function gallery_find(Request $req){
+        $find = $req->FIND;
+        $gal = DB::table('g_gallery')->select('*')->where('gallery_name','like',"%$find%")->get();
+        return view('page.g_gallery',[
+            'gallery'=>$gal,
+            'find'   =>$find,
+            'rank'   => 1
+        ]);
+    }//ค้นหา gallery
+    public function gallery_insert(Request $req){
+        $status = DB::table('g_gallery')->insert(
+        [            
+            'gallery_name'  => $req->GALLERY,
+            'gallery_create' => $req->DAY
+        ]);
+        return redirect('g_gallery');
+    }//เพิ่ม gallery
+    public function gallery(Request $req){
+        if($req->ID){
+            $edit = DB::table('g_gallery')->select('*')->where('gallery_id','=',$req->ID)->get();
+            return view('page.g_gallery_manage',[
+                'edit'=> $edit,
+                'n' => 1
+            ]);
+        }
+        return view('page.g_gallery_manage',[
+            'n'=> 0
+        ]);
+    }//แก้ไข gallery
+    public function gallery_update(Request $req){
+        $id = $req->ID;
+        $data = [
+                'gallery_name'  => $req->GALLERY,
+                'gallery_edit'  => $req->DAY
+            ];
+        DB::table('g_gallery')->where('gallery_id', $id)->update($data);
+        return redirect('g_gallery');
+    }//อัพเดต gallery
+    public function gallery_delete(Request $req){
+        $query = DB::table('g_gallery')
+            ->join('g_image','g_gallery.gallery_id','g_image.image_gallery')
+            ->select('g_gallery.*','g_image.*')
+            ->where('gallery_id','=',$req->ID)
+            ->get();
+        foreach($query as $row){
+            unlink('Image/'.$row->image_path);
+            DB::table('g_image')->where('image_gallery','=',$row->gallery_id)->delete();
+        }
+        DB::table('g_gallery')->where('gallery_id','=',$req->ID)->delete();
+        return redirect('g_gallery'); 
+    }//ลบ gallery และรูปที่อยู่ใน gallery
+    
+    public function image_list(){
+        $find = '';
+        $img = DB::table('g_image')
+            ->join('g_gallery', 'g_image.image_gallery', '=', 'g_gallery.gallery_id')
+            ->select('g_image.*', 'g_gallery.*')
+            ->get();
+       return view('page.g_image',[
+           'image'  =>$img,
+           'find'   =>$find,
+           'rank'   => 1
+        ]);
+    }//แสดง image  
+    public function image_find(Request $req){
+        $find = $req->FIND;
+        $img = DB::table('g_image')
+            ->join('g_gallery', 'g_image.image_gallery', '=', 'g_gallery.gallery_id')
+            ->select('g_image.*', 'g_gallery.*')
+            ->where('image_original','like',"%$find%")
+            ->get();
+       return view('page.g_image',[
+           'image'  =>$img,
+           'find'   =>$find,
+           'rank'   => 1
+        ]);
+    }//ค้นหา image
+    public function image_manage(Request $req){
+        $gal = DB::table('g_gallery')->select('*')->get();
+        if($req->ID){
+            $img = DB::table('g_image')->select('*')->where('image_id','=',$req->ID)->get();
+            return view('page.g_image_manage',[
+                'gallery'=> $gal,
+                'image'  => $img,
+                'n'      => 1
+             ]);
+        }else{
+        return view('page.g_image_manage',[
+           'gallery'=> $gal,
+           'n'      => 0
+        ]);
+        }
+    }//แสดงหน้า เพิ่มหรือแก้ไข image
+    public function image_insert(Request $req){
+        $file = $req->file('IMAGE');
+        // $name = $req->NAME;
+        $randomeName = rand(1001,9999);
+        if ($req->hasFile('IMAGE')) {
+            $type = $req->IMAGE->extension();
+            $namefile =  $randomeName.'.'.$type;
+            $size = $file->getClientSize();
+            $nameOriginal = $file->getClientOriginalName();
+            DB::table('g_image')->insert(
+                [
+                    'image_name'    => $randomeName,
+                    'image_original'=> $nameOriginal,
+                    'image_create'  => $req->DAY,
+                    'image_gallery' => $req->GALLERY,
+                    'image_type'    => $type,
+                    'image_path'    => $namefile,
+                    'image_size'    => round($size/1024,2)
+                ]
+            );
+            $file->move('Image',$namefile);
+        }
+        return redirect('g_image');
+    }//เพิ่ม image
+    public function image_update(Request $req){
+        $file = $req->file('IMAGE');
+        // $name = $req->NAME;
+        $randomeName = rand(1001,9999);
+        if ($req->hasFile('IMAGE')) {
+            $query = DB::table('g_image')->where('image_id','=',$req->ID)->get();
+            foreach($query as $row){
+                unlink('Image/'.$row->image_path);
+            }//ลบรูปเดิมทิ้ง
+            $type = $req->IMAGE->extension();
+            $namefile =  $randomeName.'.'.$type;
+            $size = $file->getClientSize();
+            $nameOriginal = $file->getClientOriginalName();
+            DB::table('g_image')
+                ->where('image_id',$req->ID)
+                ->update([
+                    'image_name'    => $randomeName,
+                    'image_original'=> $nameOriginal,
+                    'image_edit'    => $req->DAY,
+                    'image_gallery' => $req->GALLERY,
+                    'image_type'    => $type,
+                    'image_path'    => $namefile,
+                    'image_size'    => round($size/1024,2)
+                ]);
+            $file->move('Image',$namefile);//เพิ่มรูปใหม่
+        }else{
+            DB::table('g_image')
+                ->where('image_id',$req->ID)
+                ->update([
+                    'image_original'=> $name,
+                    'image_edit'    => $req->DAY,
+                    'image_gallery' => $req->GALLERY
+                ]);
+        }
+        return redirect('g_image');
+    }//อัพเดต image
+    public function image_delete(Request $req){
+        $query = DB::table('g_image')->where('image_id','=',$req->ID)->get();
+        foreach($query as $row){
+            if(unlink('Image/'.$row->image_path)){
+                DB::table('g_image')->where('image_id','=',$req->ID)->delete();
+            }
+        }
+        return redirect('g_image'); 
+    }//ลบ image
+
+}//end class

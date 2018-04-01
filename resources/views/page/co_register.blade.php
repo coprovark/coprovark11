@@ -127,7 +127,7 @@
         <!-- วันเกิด/อายุ -->
         <div class="form-group form-inline">
             <label class="col-sm-3">วัน เดือน ปีเกิด</label>
-            <input class="form-control form-control-sm" type="Date" name="BRITHDAY" id="date" onchange="calAge(this)">        
+            <input class="form-control form-control-sm" type="Date" max="2017-12-31" name="BRITHDAY" id="date" onchange="calAge(this)">        
                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
             <label>อายุ(ปี)</label>&emsp;
             <input type="text" class="form-control" style="width:10%" name="AGE" placeholder="อายุ(ปี)" readonly id="AGE">

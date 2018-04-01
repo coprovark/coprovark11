@@ -34,6 +34,19 @@ class FileController extends Controller
         }
         return redirect('upload1'); 
     }
+    //deleteItem แบบเลือก
+    public function deleteItem(Request $req){
+        $item = $req->param;
+        foreach ($item as $value) {
+            $query = DB::table('file')->where('ID','=',$value)->get();
+            foreach($query as $row){
+                if(@unlink('upload/'.$row->FilePath)){
+                    DB::table('file')->where('ID','=',$value)->delete();
+                }
+            }
+        }
+        return response()->json($item);
+    }
     //edit
     public function ed(Request $req){
         $query = DB::table('file')->select('*')->get();
@@ -50,6 +63,10 @@ class FileController extends Controller
         $name = $req->uploadfilename;
         $randomeName = rand(1001,9999);
         if ($req->hasFile('uploadfile')) {
+            $query = DB::table('file')->where('ID','=',$req->ID)->get();
+            foreach($query as $row){
+                unlink('upload/'.$row->FilePath);//ลบไฟล์
+            }
             $type = $req->uploadfile->extension();
             $namefile =  $randomeName.'.'.$type;
             $size = $file->getClientSize();
@@ -80,7 +97,6 @@ class FileController extends Controller
         $name = $req->uploadfilename;
         $randomeName = rand(1001,9999);
         if ($req->hasFile('uploadfile')) {
-
             $type = $req->uploadfile->extension();
             $namefile =  $randomeName.'.'.$type;
             $size = $file->getClientSize();
@@ -97,8 +113,6 @@ class FileController extends Controller
             echo "upload success";
             return redirect('upload1');
         }
-
-       # $file->getClientSize()
     }
     
 

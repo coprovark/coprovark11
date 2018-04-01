@@ -61,6 +61,17 @@
                             <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> GALLERY<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/g_gallery"> จัดการแกลลอรี่</a>
+                                </li>
+                                <li>
+                                    <a href="/g_image"> จัดการรูปภาพ</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> CO-PROVARK<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
@@ -70,7 +81,6 @@
                                     <a href="/co_member">สมาชิก</a>
                                 </li>
                             </ul>
-                            
                         </li>
                         <li>
                             <a href="/form_login2"><i class="fa fa-table fa-fw"></i> เข้าสู่ระบบ</a>

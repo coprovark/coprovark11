@@ -153,4 +153,22 @@ Route::post('/upload1','FileController@upload');//upload
 Route::get('/dl/{path}/{name}','FileController@dl');//download
 Route::get('/rm/{ID}','FileController@rm');//delete
 Route::get('/ed/{ID}','FileController@ed');//edit
-Route::post('/update1','FileController@update1');//edit
+Route::post('/update1','FileController@update1');//update
+Route::post('/api/delete','FileController@deleteItem');//เลือกทั้งหมด
+
+//------Gallery----------------------------------------------
+Route::get('/g_gallery','UsersController@gallery_list');//แสดงผลในตาราง Gallery
+Route::get('/Gfind','UsersController@gallery_find');//find gallery
+Route::get('/g_gallery_manage','UsersController@gallery');//แสดงหน้า เพิ่มหรือแก้ไข Gallery
+Route::get('/Gedit/{ID}','UsersController@gallery');//edit gallery
+Route::post('/gallery_insert','UsersController@gallery_insert');//insert gallery
+Route::post('/gallery_update/{ID}','UsersController@gallery_update');//update gallery
+Route::get('/gallery_delete/{ID}','UsersController@gallery_delete');//delete gallery
+
+Route::get('/g_image_manage','UsersController@image_manage');//แสดงหน้า เพิ่มหรือแก้ไข image
+Route::get('/Iedit/{ID}','UsersController@image_manage');//edit image
+Route::get('/g_image','UsersController@image_list');//แสดงผลในตาราง Image
+Route::get('/Ifind','UsersController@image_find');//find Image
+Route::post('/image_insert','UsersController@image_insert');//insert image
+Route::post('/image_update/{ID}','UsersController@image_update');//update image
+Route::get('/image_delete/{ID}','UsersController@image_delete');//delete image
