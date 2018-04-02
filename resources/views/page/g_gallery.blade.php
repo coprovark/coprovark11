@@ -39,7 +39,7 @@
         <td>{{ $gal->gallery_name }}</td>
         <td style="text-align:center;">{{ $gal->gallery_create }}</td>
         <td style="text-align:center;">{{ $gal->gallery_edit }}</td>
-        <td style="text-align:center;">10</td>
+        <td style="text-align:center;">{{ DB::table('g_image')->where('image_gallery','=',$gal->gallery_id)->count() }}</td>
         <td>            
             <a href="{{ url('Gedit/'.$gal->gallery_id) }}">
                 <button type="button" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="แก้ไขข้อมูล">
