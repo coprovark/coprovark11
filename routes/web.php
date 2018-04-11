@@ -172,3 +172,7 @@ Route::get('/Ifind','UsersController@image_find');//find Image
 Route::post('/image_insert','UsersController@image_insert');//insert image
 Route::post('/image_update/{ID}','UsersController@image_update');//update image
 Route::get('/image_delete/{ID}','UsersController@image_delete');//delete image
+
+Route::get('/g_show', function(){
+    return view('page.g_show');
+});

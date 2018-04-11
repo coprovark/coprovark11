@@ -64,6 +64,9 @@
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> GALLERY<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
+                                    <a href="/g_show"> แสดงภาพ</a>
+                                </li>
+                                <li>
                                     <a href="/g_gallery"> จัดการแกลลอรี่</a>
                                 </li>
                                 <li>

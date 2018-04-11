@@ -414,6 +414,7 @@ class UsersController extends Controller
         $img = DB::table('g_image')
             ->join('g_gallery', 'g_image.image_gallery', '=', 'g_gallery.gallery_id')
             ->select('g_image.*', 'g_gallery.*')
+            ->orderBy('image_id', 'EDSC')
             ->get();
        return view('page.g_image',[
            'image'  =>$img,
